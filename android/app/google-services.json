@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "107364650222",
+    "firebase_url": "https://budgetcontrolbitkod.firebaseio.com",
+    "project_id": "budgetcontrolbitkod",
+    "storage_bucket": "budgetcontrolbitkod.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:107364650222:android:8c7cdf0c544871b9c377ff",
+        "android_client_info": {
+          "package_name": "com.bitkod.budgetControl"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "107364650222-bvbkkq0r3r81qq3kjo3pig4vjk6m2u33.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBPHVdYiOw1YTUxbpIaqywFktAZWfnJh7g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "107364650222-bvbkkq0r3r81qq3kjo3pig4vjk6m2u33.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "107364650222-dcka9ae3t00uf1ph98kg8gp97r1up9ti.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.bitkod.budgetControl"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
