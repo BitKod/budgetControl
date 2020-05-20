@@ -5,7 +5,6 @@ import 'package:budgetControl/core/view/widget/card/text_input_card.dart';
 import 'package:budgetControl/core/view/widget/loading/loading.dart';
 import 'package:budgetControl/inApp/models/bank.dart';
 import 'package:budgetControl/inApp/models/saving.dart';
-import 'package:budgetControl/inApp/services/auth.dart';
 import 'package:budgetControl/inApp/services/database_saving.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -22,23 +21,12 @@ class _SavingsState extends BaseState<Savings> {
   final GlobalKey<ScaffoldState> _scaffoldKeySavings =
       new GlobalKey<ScaffoldState>();
 
-  final AuthService _auth = AuthService();
-  String userUid;
   List<Saving> _savings = [];
 
   initState() {
     getUserUid();
     getCurrency();
     super.initState();
-  }
-
-  getUserUid() async {
-    String _userUid = await _auth.currentUserUid;
-    setState(
-      () {
-        userUid = _userUid;
-      },
-    );
   }
 
   getCurrency() async {

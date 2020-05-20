@@ -1,4 +1,5 @@
 
+import 'package:budgetControl/inApp/services/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:budgetControl/core/constants/app_constants.dart';
 import 'package:budgetControl/core/constants/app_strings.dart';
@@ -7,6 +8,19 @@ import 'package:budgetControl/core/constants/app_strings.dart';
 abstract class BaseState<T extends StatefulWidget> extends State<T> {
 
 
+  // Firebase Auth
+  final AuthService _auth = AuthService();
+  String userUid;
+  getUserUid() async {
+    String _userUid = await _auth.currentUserUid;
+    setState(
+      () {
+        userUid = _userUid;
+      },
+    );
+  }
+
+  //widget process status
   bool loading = false;
   String error = '';
 

@@ -26,7 +26,6 @@ class Operation extends StatefulWidget {
 class _OperationState extends BaseState<Operation> {
   final GlobalKey<ScaffoldState> _scaffoldKeyOperation =
       new GlobalKey<ScaffoldState>();
-  final AuthService _auth = AuthService();
 
   final _incomeFormKey = GlobalKey<FormState>();
     final _incomeIdController = TextEditingController();
@@ -60,7 +59,6 @@ class _OperationState extends BaseState<Operation> {
   bool otherExpenseStatus = false;
   bool invoiceStatus = false;
 
-  String userUid;
   DateTime currentDate;
   DateTime selectedDate;
 
@@ -72,14 +70,6 @@ class _OperationState extends BaseState<Operation> {
     getUserUid();
   }
 
-  getUserUid() async {
-    String _userUid = await _auth.currentUserUid;
-    setState(
-      () {
-        userUid = _userUid;
-      },
-    );
-  }
 
   @override
   Widget build(BuildContext context) {

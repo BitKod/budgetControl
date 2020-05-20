@@ -10,7 +10,6 @@ import '../models/bank.dart';
 import '../models/credit_card.dart';
 import '../models/fixed_expense.dart';
 import '../models/invoice.dart';
-import '../services/auth.dart';
 import '../services/database_bank.dart';
 import '../services/database_credit_card.dart';
 import '../services/database_fixed_expense.dart';
@@ -26,7 +25,6 @@ class DataInput extends StatefulWidget {
 class _DataInputState extends BaseState<DataInput> {
   final GlobalKey<ScaffoldState> _scaffoldKeyDataInput =
       new GlobalKey<ScaffoldState>();
-  final AuthService _auth = AuthService();
 
   final _bankFormKey = GlobalKey<FormState>();
   final _bankIdController = TextEditingController();
@@ -52,7 +50,6 @@ class _DataInputState extends BaseState<DataInput> {
   final _paymentInstrumentFixedExpenseController = TextEditingController();
   final _detailsController = TextEditingController();
 
-  String userUid;
 
   @override
   initState() {
@@ -60,14 +57,6 @@ class _DataInputState extends BaseState<DataInput> {
     getUserUid();
   }
 
-  getUserUid() async {
-    String _userUid = await _auth.currentUserUid;
-    setState(
-      () {
-        userUid = _userUid;
-      },
-    );
-  }
 
   @override
   Widget build(BuildContext context) {

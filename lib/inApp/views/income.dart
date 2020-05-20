@@ -5,7 +5,6 @@ import 'package:budgetControl/core/view/widget/card/text_input_card.dart';
 import 'package:budgetControl/core/view/widget/loading/loading.dart';
 import 'package:budgetControl/inApp/models/bank.dart';
 import 'package:budgetControl/inApp/models/income.dart';
-import 'package:budgetControl/inApp/services/auth.dart';
 import 'package:budgetControl/inApp/services/database_income.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -20,25 +19,14 @@ class Incomes extends StatefulWidget {
 }
 
 class _IncomesState extends BaseState<Incomes> {
-  final GlobalKey<ScaffoldState> _scaffoldKeyIncomes =
-      new GlobalKey<ScaffoldState>();
 
-  final AuthService _auth = AuthService();
-  String userUid;
+  final GlobalKey<ScaffoldState> _scaffoldKeyIncomes = new GlobalKey<ScaffoldState>();
+
   List<Income> _incomes = [];
 
   initState() {
     getUserUid();
     super.initState();
-  }
-
-  getUserUid() async {
-    String _userUid = await _auth.currentUserUid;
-    setState(
-      () {
-        userUid = _userUid;
-      },
-    );
   }
 
   String _bankName;

@@ -21,10 +21,7 @@ class Balances extends StatefulWidget {
 class _BalancesState extends BaseState<Balances> {
   final GlobalKey<ScaffoldState> _scaffoldKeyBalances =
       new GlobalKey<ScaffoldState>();
-  final AuthService _auth = AuthService();
 
-
-  String userUid;
 
   List<Income> _incomes = [];
   List<Expense> _expenses = [];
@@ -35,14 +32,6 @@ class _BalancesState extends BaseState<Balances> {
     super.initState();
   }
 
-  getUserUid() async {
-    String _userUid = await _auth.currentUserUid;
-    setState(
-      () {
-        userUid = _userUid;
-      },
-    );
-  }
 
   String _bankName;
   String _periodMonth;

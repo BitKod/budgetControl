@@ -4,7 +4,6 @@ import 'package:budgetControl/core/view/base/base_state.dart';
 import 'package:budgetControl/core/view/widget/card/text_input_card.dart';
 import 'package:budgetControl/core/view/widget/loading/loading.dart';
 import 'package:budgetControl/inApp/models/expense.dart';
-import 'package:budgetControl/inApp/services/auth.dart';
 import 'package:budgetControl/inApp/services/database_expense.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -21,8 +20,6 @@ class _ExpensesState extends BaseState<Expenses> {
   final GlobalKey<ScaffoldState> _scaffoldKeyExpenses =
       new GlobalKey<ScaffoldState>();
 
-  final AuthService _auth = AuthService();
-  String userUid;
   List<Expense> _expenses = [];
 
   initState() {
@@ -30,21 +27,11 @@ class _ExpensesState extends BaseState<Expenses> {
     super.initState();
   }
 
-  getUserUid() async {
-    String _userUid = await _auth.currentUserUid;
-    setState(
-      () {
-        userUid = _userUid;
-      },
-    );
-  }
-
   bool installmentStatus = false;
   bool fixedExpenseStatus = false;
   bool otherExpenseStatus = false;
   bool invoiceStatus = false;
 
-  String _selectedExpenseType;
 
   String _bankName;
   String _expenseType;
@@ -385,9 +372,7 @@ class _ExpensesState extends BaseState<Expenses> {
                               _periodMonthController.text =
                                   _expense.periodMonth;
                               _periodYearController.text = _expense.periodYear;
-                              setState(() {
-                                _selectedExpenseType = _expense.expenseType;
-                              });
+
 
                               showDialog<String>(
                                 context: context,

@@ -57,7 +57,6 @@ class _MyAppState extends State<MyApp> {
   FirebaseUser user;
   void initState() {
     super.initState();
-
     FirebaseAuth.instance.onAuthStateChanged.listen((changedUser) {
       setState(() {
         isAuthenticated = changedUser != null;
