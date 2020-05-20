@@ -296,12 +296,10 @@ class _IncomesState extends BaseState<Incomes> {
                                                     await DatabaseIncomeService()
                                                         .deleteIncome(
                                                   userUid,
-                                                  _incomeIdController.text,
+                                                  _income.id,
                                                 );
                                                 if (result != null) {
-                                                  setState(
-                                                      () => loading = false);
-                                                  Navigator.pop(context);
+                                                  
                                                   _scaffoldKeyIncomes
                                                       .currentState
                                                       .showSnackBar(SnackBar(
@@ -310,6 +308,10 @@ class _IncomesState extends BaseState<Incomes> {
                                                     duration:
                                                         Duration(seconds: 1),
                                                   ));
+                                                  setState(
+                                                      () => loading = false);
+                                                  
+                                                  Navigator.pop(context);
                                                 } else {
                                                   setState(() => error =
                                                       LocaleKeys.appStrings_errorCYI.locale);

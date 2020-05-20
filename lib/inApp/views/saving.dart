@@ -458,11 +458,9 @@ class _SavingsState extends BaseState<Savings> {
                                                     await DatabaseSavingService()
                                                         .deleteSaving(
                                                   userUid,
-                                                  _savingIdController.text,
+                                                  _saving.id,
                                                 );
                                                 if (result != null) {
-                                                  setState(
-                                                      () => loading = false);
                                                   Navigator.pop(context);
                                                   _scaffoldKeySavings
                                                       .currentState

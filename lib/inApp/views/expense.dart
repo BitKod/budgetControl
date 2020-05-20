@@ -347,11 +347,9 @@ class _ExpensesState extends BaseState<Expenses> {
                                                     await DatabaseExpenseService()
                                                         .deleteExpense(
                                                   userUid,
-                                                  _expenseIdController.text,
+                                                  _expense.id,
                                                 );
                                                 if (result != null) {
-                                                  setState(
-                                                      () => loading = false);
                                                   Navigator.pop(context);
                                                   _scaffoldKeyExpenses
                                                       .currentState
