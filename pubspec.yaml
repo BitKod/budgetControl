@@ -48,10 +48,20 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
+  build_runner: ^1.10.0
+
+  flutter_launcher_icons: ^0.7.5
+
+
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
 # The following section is specific to Flutter.
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/icon/bitkod.png"
+
 flutter:
 
   # The following line ensures that the Material Icons font is
@@ -66,6 +76,7 @@ flutter:
   assets:
     - assets/lottie/
     - assets/lang/
+    - assets/icon/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 
