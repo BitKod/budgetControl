@@ -20,3 +20,6 @@ flutter packages pub run build_runner build
 
 icon
 flutter pub run flutter_launcher_icons:main
+
+build
+flutter run --release -d "CLT L29"

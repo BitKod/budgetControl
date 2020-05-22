@@ -14,13 +14,12 @@ import '../models/bank.dart';
 import '../models/credit_card.dart';
 import '../models/fixed_expense.dart';
 import '../models/invoice.dart';
-import '../services/auth.dart';
 
 class Operation extends StatefulWidget {
   const Operation({Key key}) : super(key: key);
 
   @override
-  State<StatefulWidget> createState() => _OperationState();
+  State<StatefulWidget> createState() => new _OperationState();
 }
 
 class _OperationState extends BaseState<Operation> {
@@ -28,31 +27,31 @@ class _OperationState extends BaseState<Operation> {
       new GlobalKey<ScaffoldState>();
 
   final _incomeFormKey = GlobalKey<FormState>();
-    final _incomeIdController = TextEditingController();
-    final _bankNameIncomeController = TextEditingController();
-    final _incomeTypeController = TextEditingController();
-    final _incomeAmountController = TextEditingController();
-    final _periodMonthIncomeController = TextEditingController();
-    final _periodYearIncomeController = TextEditingController();
+  final _incomeIdController = TextEditingController();
+  final _bankNameIncomeController = TextEditingController();
+  final _incomeTypeController = TextEditingController();
+  final _incomeAmountController = TextEditingController();
+  final _periodMonthIncomeController = TextEditingController();
+  final _periodYearIncomeController = TextEditingController();
 
   final _expenseFormKey = GlobalKey<FormState>();
-    final _expenseIdController = TextEditingController();
-    final _bankNameExpenseController = TextEditingController();
-    final _expenseTypeController = TextEditingController();
-    final _expenseAmountController = TextEditingController();
-    final _installmentPeriodController = TextEditingController();
-    final _expenseInstrumentController = TextEditingController();
-    final _expenseDetailController = TextEditingController();
-    final _periodMonthExpenseController = TextEditingController();
-    final _periodYearExpenseController = TextEditingController();
+  final _expenseIdController = TextEditingController();
+  final _bankNameExpenseController = TextEditingController();
+  final _expenseTypeController = TextEditingController();
+  final _expenseAmountController = TextEditingController();
+  final _installmentPeriodController = TextEditingController();
+  final _expenseInstrumentController = TextEditingController();
+  final _expenseDetailController = TextEditingController();
+  final _periodMonthExpenseController = TextEditingController();
+  final _periodYearExpenseController = TextEditingController();
 
   final _savingFormKey = GlobalKey<FormState>();
-    final _savingIdController = new TextEditingController();
-    final _bankNameSavingController = new TextEditingController();
-    final _savingTypeController = new TextEditingController();
-    final _savingAmountController = new TextEditingController();
-    final _savingCurrencyController = new TextEditingController();
-    final _savingDateController = new TextEditingController();
+  final _savingIdController = new TextEditingController();
+  final _bankNameSavingController = new TextEditingController();
+  final _savingTypeController = new TextEditingController();
+  final _savingAmountController = new TextEditingController();
+  final _savingCurrencyController = new TextEditingController();
+  final _savingDateController = new TextEditingController();
 
   bool installmentStatus = false;
   bool fixedExpenseStatus = false;
@@ -69,7 +68,6 @@ class _OperationState extends BaseState<Operation> {
     super.initState();
     getUserUid();
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -262,8 +260,7 @@ class _OperationState extends BaseState<Operation> {
     );
   }
 
-  _getCreditCardChip(
-      _creditCards, _bankNameController, _expenseInstrumentController) {
+  _getCreditCardChip(_creditCards, _bankNameController, _expenseInstrumentController) {
     return Wrap(
       spacing: dynamicWidth(0.02),
       runSpacing: dynamicWidth(0.01),
@@ -307,8 +304,7 @@ class _OperationState extends BaseState<Operation> {
     );
   }
 
-  _getFixedExpenseChip(_fixedExpenses, _bankNameController,
-      _expenseInstrumentController, _expenseTypeController) {
+  _getFixedExpenseChip(_fixedExpenses, _bankNameController,_expenseInstrumentController, _expenseTypeController) {
     return Wrap(
       spacing: dynamicWidth(0.02),
       runSpacing: dynamicWidth(0.01),
@@ -357,8 +353,7 @@ class _OperationState extends BaseState<Operation> {
     );
   }
 
-  _getInvoiceChip(
-      _invoices, _bankNameController, _expenseInstrumentController) {
+  _getInvoiceChip( _invoices, _bankNameController, _expenseInstrumentController) {
     return Wrap(
       spacing: dynamicWidth(0.02),
       runSpacing: dynamicWidth(0.01),
@@ -535,9 +530,6 @@ class _OperationState extends BaseState<Operation> {
   }
 
   _incomeTab(_banks) {
-
-
-
     return loading
         ? Loading()
         : SingleChildScrollView(
@@ -637,8 +629,8 @@ class _OperationState extends BaseState<Operation> {
                         ),
                       ],
                     ),
-                    _getMonthYear(
-                        _periodMonthIncomeController, _periodYearIncomeController),
+                    _getMonthYear(_periodMonthIncomeController,
+                        _periodYearIncomeController),
                     SizedBox(height: dynamicHeight(0.01)),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -734,8 +726,6 @@ class _OperationState extends BaseState<Operation> {
   }
 
   _expensesTab(_creditCards, _banks, _fixedExpenses, _invoices) {
-
-
     return loading
         ? Loading()
         : SingleChildScrollView(
@@ -758,8 +748,11 @@ class _OperationState extends BaseState<Operation> {
                     _getExpenseTypeRadio(_expenseTypeController),
                     SizedBox(height: dynamicHeight(0.01)),
                     if (fixedExpenseStatus) ...[
-                      _getFixedExpenseChip(_fixedExpenses, _bankNameExpenseController,
-                          _expenseInstrumentController, _expenseTypeController),
+                      _getFixedExpenseChip(
+                          _fixedExpenses,
+                          _bankNameExpenseController,
+                          _expenseInstrumentController,
+                          _expenseTypeController),
                       SizedBox(height: dynamicHeight(0.01)),
                     ],
                     if (invoiceStatus) ...[
@@ -768,7 +761,9 @@ class _OperationState extends BaseState<Operation> {
                       SizedBox(height: dynamicHeight(0.01)),
                     ],
                     if (installmentStatus) ...[
-                      _getCreditCardChip(_creditCards, _bankNameExpenseController,
+                      _getCreditCardChip(
+                          _creditCards,
+                          _bankNameExpenseController,
                           _expenseInstrumentController),
                       SizedBox(height: dynamicHeight(0.01)),
                       TextInputCard(
@@ -807,7 +802,9 @@ class _OperationState extends BaseState<Operation> {
                       ),
                       _getBankChipOther(_banks, _bankNameExpenseController,
                           _expenseInstrumentController),
-                      _getCreditCardChip(_creditCards, _bankNameExpenseController,
+                      _getCreditCardChip(
+                          _creditCards,
+                          _bankNameExpenseController,
                           _expenseInstrumentController),
                       SizedBox(height: dynamicHeight(0.01)),
                     ],
@@ -920,8 +917,8 @@ class _OperationState extends BaseState<Operation> {
                         ),
                       ],
                     ),
-                    _getMonthYear(
-                        _periodMonthExpenseController, _periodYearExpenseController),
+                    _getMonthYear(_periodMonthExpenseController,
+                        _periodYearExpenseController),
                     SizedBox(height: dynamicHeight(0.01)),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -1066,8 +1063,8 @@ class _OperationState extends BaseState<Operation> {
                         },
                       ),
                     ),
-                    _getBankChipSaving(
-                        _banks, _bankNameSavingController, _savingTypeController),
+                    _getBankChipSaving(_banks, _bankNameSavingController,
+                        _savingTypeController),
                     SizedBox(height: dynamicHeight(0.01)),
                     TextInputCard(
                       TextFormField(

@@ -86,8 +86,9 @@ class _DataInputState extends BaseState<DataInput> {
     final _kTabPages = <Widget>[
       _bankTab(_banks),
       _creditCardTab(_creditCards, _banks),
-      _invoiceTab(_invoices, _creditCards, _banks),
       _fixedExpenseTab(_fixedExpenses, _creditCards, _banks),
+      _invoiceTab(_invoices, _creditCards, _banks),
+      
     ];
 
     return Scaffold(
