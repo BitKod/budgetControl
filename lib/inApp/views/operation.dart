@@ -260,7 +260,8 @@ class _OperationState extends BaseState<Operation> {
     );
   }
 
-  _getCreditCardChip(_creditCards, _bankNameController, _expenseInstrumentController) {
+  _getCreditCardChip(
+      _creditCards, _bankNameController, _expenseInstrumentController) {
     return Wrap(
       spacing: dynamicWidth(0.02),
       runSpacing: dynamicWidth(0.01),
@@ -304,7 +305,8 @@ class _OperationState extends BaseState<Operation> {
     );
   }
 
-  _getFixedExpenseChip(_fixedExpenses, _bankNameController,_expenseInstrumentController, _expenseTypeController) {
+  _getFixedExpenseChip(_fixedExpenses, _bankNameController,
+      _expenseInstrumentController, _expenseTypeController) {
     return Wrap(
       spacing: dynamicWidth(0.02),
       runSpacing: dynamicWidth(0.01),
@@ -353,7 +355,8 @@ class _OperationState extends BaseState<Operation> {
     );
   }
 
-  _getInvoiceChip( _invoices, _bankNameController, _expenseInstrumentController) {
+  _getInvoiceChip(
+      _invoices, _bankNameController, _expenseInstrumentController) {
     return Wrap(
       spacing: dynamicWidth(0.02),
       runSpacing: dynamicWidth(0.01),
@@ -696,16 +699,7 @@ class _OperationState extends BaseState<Operation> {
                             color: currentTheme.primaryColor,
                             textColor: Colors.white,
                             onPressed: () {
-                              setState(
-                                () {
-                                  _incomeIdController.text = '';
-                                  _bankNameIncomeController.text = '';
-                                  _incomeTypeController.text = '';
-                                  _incomeAmountController.text = '';
-                                  _periodMonthIncomeController.text = '';
-                                  _periodYearIncomeController.text = '';
-                                },
-                              );
+                              _incomeFormKey.currentState.reset();
                             },
                           ),
                         ),
@@ -971,6 +965,7 @@ class _OperationState extends BaseState<Operation> {
                                     ));
 
                                     setState(() => loading = false);
+
                                     _expenseIdController.text = '';
                                     _bankNameExpenseController.text = '';
                                     _expenseTypeController.text = '';
@@ -1003,23 +998,7 @@ class _OperationState extends BaseState<Operation> {
                             color: currentTheme.primaryColor,
                             textColor: Colors.white,
                             onPressed: () {
-                              setState(
-                                () {
-                                  _expenseIdController.text = '';
-                                  _bankNameExpenseController.text = '';
-                                  _expenseTypeController.text = '';
-                                  _expenseAmountController.text = '';
-                                  _installmentPeriodController.text = '';
-                                  _expenseInstrumentController.text = '';
-                                  _periodMonthExpenseController.text = '';
-                                  _periodYearExpenseController.text = '';
-                                  _selectedExpenseType = '';
-                                  installmentStatus = false;
-                                  fixedExpenseStatus = false;
-                                  invoiceStatus = false;
-                                  otherExpenseStatus = false;
-                                },
-                              );
+                              _expenseFormKey.currentState.reset();
                             },
                           ),
                         ),
@@ -1197,16 +1176,7 @@ class _OperationState extends BaseState<Operation> {
                             color: currentTheme.primaryColor,
                             textColor: Colors.white,
                             onPressed: () {
-                              setState(
-                                () {
-                                  _savingIdController.text = '';
-                                  _bankNameSavingController.text = '';
-                                  _savingTypeController.text = '';
-                                  _savingAmountController.text = '';
-                                  _savingCurrencyController.text = '';
-                                  _savingDateController.text = '';
-                                },
-                              );
+                              _savingFormKey.currentState.reset();
                             },
                           ),
                         ),

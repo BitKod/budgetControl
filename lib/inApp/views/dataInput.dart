@@ -50,13 +50,11 @@ class _DataInputState extends BaseState<DataInput> {
   final _paymentInstrumentFixedExpenseController = TextEditingController();
   final _detailsController = TextEditingController();
 
-
   @override
   initState() {
     super.initState();
     getUserUid();
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +65,7 @@ class _DataInputState extends BaseState<DataInput> {
 
     final _kTabs = <Tab>[
       Tab(
-        icon: Icon(Icons.save),
+        icon: Icon(Icons.input),
         text: LocaleKeys.appStrings_dataInputItems_Banks.locale,
       ),
       Tab(
@@ -88,7 +86,6 @@ class _DataInputState extends BaseState<DataInput> {
       _creditCardTab(_creditCards, _banks),
       _fixedExpenseTab(_fixedExpenses, _creditCards, _banks),
       _invoiceTab(_invoices, _creditCards, _banks),
-      
     ];
 
     return Scaffold(
@@ -321,14 +318,7 @@ class _DataInputState extends BaseState<DataInput> {
                             color: currentTheme.primaryColor,
                             textColor: Colors.white,
                             onPressed: () {
-                              setState(
-                                () {
-                                  _bankIdController.text = '';
-                                  _bankNameBankController.text = '';
-                                  _accountTypeController.text = '';
-                                  _ownerBankController.text = '';
-                                },
-                              );
+                              _bankFormKey.currentState.reset();
                             },
                           ),
                         ),
@@ -396,7 +386,8 @@ class _DataInputState extends BaseState<DataInput> {
                             ),
                             onPressed: () {
                               _bankIdController.text = _banks[index].id;
-                              _bankNameBankController.text = _banks[index].bankName;
+                              _bankNameBankController.text =
+                                  _banks[index].bankName;
                               _accountTypeController.text =
                                   _banks[index].accountType;
                               _ownerBankController.text = _banks[index].owner;
@@ -494,7 +485,8 @@ class _DataInputState extends BaseState<DataInput> {
                                       await DatabaseCreditCardService()
                                           .createCreditCard(
                                               userUid,
-                                              _bankNameCreditCardController.text,
+                                              _bankNameCreditCardController
+                                                  .text,
                                               _cardTypeController.text,
                                               _ownerCreditCardController.text);
                                   if (result != null) {
@@ -518,14 +510,7 @@ class _DataInputState extends BaseState<DataInput> {
                             color: currentTheme.primaryColor,
                             textColor: Colors.white,
                             onPressed: () {
-                              setState(
-                                () {
-                                  _creditCardIdController.text = '';
-                                  _bankNameCreditCardController.text = '';
-                                  _cardTypeController.text = '';
-                                  _ownerCreditCardController.text = '';
-                                },
-                              );
+                              _creditCardFormKey.currentState.reset();
                             },
                           ),
                         ),
@@ -545,7 +530,8 @@ class _DataInputState extends BaseState<DataInput> {
                                           .editCreditCard(
                                               userUid,
                                               _creditCardIdController.text,
-                                              _bankNameCreditCardController.text,
+                                              _bankNameCreditCardController
+                                                  .text,
                                               _cardTypeController.text,
                                               _ownerCreditCardController.text);
                                   if (result != null) {
@@ -600,7 +586,8 @@ class _DataInputState extends BaseState<DataInput> {
                                   _creditCards[index].bankName;
                               _cardTypeController.text =
                                   _creditCards[index].cardType;
-                              _ownerCreditCardController.text = _creditCards[index].owner;
+                              _ownerCreditCardController.text =
+                                  _creditCards[index].owner;
                             },
                             backgroundColor:
                                 currentTheme.colorScheme.background,
@@ -612,213 +599,6 @@ class _DataInputState extends BaseState<DataInput> {
                               await DatabaseCreditCardService(
                                 uid: userUid,
                               ).deleteCreditCard(_creditCards[index].id);
-                              setState(() => loading = false);
-                            },
-                          );
-                        },
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          );
-  }
-
-  _invoiceTab(_invoices, _creditCards, _banks) {
-    return loading
-        ? Loading()
-        : SingleChildScrollView(
-            child: Form(
-              key: _invoiceFormKey,
-              child: Padding(
-                padding: EdgeInsets.all(dynamicWidth(0.02)),
-                child: Column(
-                  children: <Widget>[
-                    TextInputCard(
-                      TextFormField(
-                        decoration: appConstants.textInputDecoration.copyWith(
-                            labelText:
-                                LocaleKeys.appStrings_invoiceType.locale),
-                        controller: _incoiceTypeController,
-                        validator: (value) {
-                          if (value.isEmpty) {
-                            return LocaleKeys
-                                .appStrings_enterInvoiceType.locale;
-                          }
-                          return null;
-                        },
-                      ),
-                    ),
-                    TextInputCard(
-                      TextFormField(
-                        enabled: false,
-                        decoration: appConstants.textInputDecoration.copyWith(
-                            labelText:
-                                LocaleKeys.appStrings_paymentInstrument.locale),
-                        controller: _paymentInstrumentInvoiceController,
-                        validator: (value) {
-                          if (value.isEmpty) {
-                            return LocaleKeys
-                                .appStrings_enterPaymentInstrument.locale;
-                          }
-                          return null;
-                        },
-                      ),
-                    ),
-                    _getCreditCardChip(
-                        _creditCards, _paymentInstrumentInvoiceController),
-                    SizedBox(height: dynamicHeight(0.01)),
-                    _getBankChipInvoice(_banks, _paymentInstrumentInvoiceController),
-                    SizedBox(height: dynamicHeight(0.01)),
-                    TextInputCard(
-                      TextFormField(
-                        decoration: appConstants.textInputDecoration.copyWith(
-                            labelText: LocaleKeys.appStrings_owner.locale),
-                        controller: _ownerInvoiceController,
-                        validator: (value) {
-                          if (value.isEmpty) {
-                            return LocaleKeys.appStrings_enterOwner.locale;
-                          }
-                          return null;
-                        },
-                      ),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: <Widget>[
-                        Container(
-                          margin:
-                              const EdgeInsets.only(top: 16.0, bottom: 16.0),
-                          child: RaisedButton(
-                            child: Text(LocaleKeys.appStrings_add.locale),
-                            color: currentTheme.primaryColor,
-                            textColor: Colors.white,
-                            onPressed: () async {
-                              if (_invoiceFormKey.currentState.validate()) {
-                                setState(() => loading = true);
-                                try {
-                                  dynamic result =
-                                      await DatabaseInvoiceService()
-                                          .createInvoice(
-                                              userUid,
-                                              _incoiceTypeController.text,
-                                              _paymentInstrumentInvoiceController.text,
-                                              _ownerInvoiceController.text);
-                                  if (result != null) {
-                                    setState(() => loading = false);
-                                  } else {
-                                    setState(() => error =
-                                        LocaleKeys.appStrings_errorCYI.locale);
-                                    setState(() => loading = false);
-                                  }
-                                } catch (e) {}
-                              }
-                            },
-                          ),
-                        ),
-                        Container(
-                          margin:
-                              const EdgeInsets.only(top: 16.0, bottom: 16.0),
-                          child: RaisedButton(
-                            child:
-                                Text(LocaleKeys.appStrings_clearScreen.locale),
-                            color: currentTheme.primaryColor,
-                            textColor: Colors.white,
-                            onPressed: () {
-                              setState(
-                                () {
-                                  _invoiceIdController.text = '';
-                                  _incoiceTypeController.text = '';
-                                  _paymentInstrumentInvoiceController.text = '';
-                                  _ownerInvoiceController.text = '';
-                                },
-                              );
-                            },
-                          ),
-                        ),
-                        Container(
-                          margin:
-                              const EdgeInsets.only(top: 16.0, bottom: 16.0),
-                          child: RaisedButton(
-                            child: Text(LocaleKeys.appStrings_update.locale),
-                            color: currentTheme.primaryColor,
-                            textColor: Colors.white,
-                            onPressed: () async {
-                              if (_invoiceFormKey.currentState.validate()) {
-                                setState(() => loading = true);
-                                try {
-                                  dynamic result =
-                                      await DatabaseInvoiceService()
-                                          .editInvoice(
-                                              userUid,
-                                              _invoiceIdController.text,
-                                              _incoiceTypeController.text,
-                                              _paymentInstrumentInvoiceController.text,
-                                              _ownerInvoiceController.text);
-                                  if (result != null) {
-                                    setState(() => loading = false);
-                                  } else {
-                                    setState(() => error =
-                                        LocaleKeys.appStrings_errorCYI.locale);
-                                    setState(() => loading = false);
-                                  }
-                                } catch (e) {}
-                              }
-                            },
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: dynamicHeight(0.02),
-                    ),
-                    Text(
-                      error,
-                      style: TextStyle(color: Colors.red, fontSize: 14.0),
-                    ),
-                    Wrap(
-                      spacing: dynamicWidth(0.02),
-                      runSpacing: dynamicWidth(0.03),
-                      children: List<Widget>.generate(
-                        _invoices.length,
-                        (int index) {
-                          return InputChip(
-                            labelPadding: EdgeInsets.all(dynamicWidth(0.01)),
-                            avatar: CircleAvatar(
-                              backgroundColor: Colors.grey.shade600,
-                              child: Text(_invoices[index]
-                                  .invoiceType[0]
-                                  .toUpperCase()),
-                            ),
-                            label: Text(
-                              _invoices[index].invoiceType +
-                                  ' / ' +
-                                  _invoices[index].paymentInstrument +
-                                  ' / ' +
-                                  _invoices[index].owner,
-                              style: TextStyle(
-                                color: Colors.white,
-                              ),
-                            ),
-                            onPressed: () {
-                              _invoiceIdController.text = _invoices[index].id;
-                              _incoiceTypeController.text =
-                                  _invoices[index].invoiceType;
-                              _paymentInstrumentInvoiceController.text =
-                                  _invoices[index].paymentInstrument;
-                              _ownerInvoiceController.text = _invoices[index].owner;
-                            },
-                            backgroundColor:
-                                currentTheme.colorScheme.background,
-                            elevation: 6.0,
-                            shadowColor: Colors.grey[60],
-                            padding: EdgeInsets.all(dynamicWidth(0.01)),
-                            onDeleted: () async {
-                              setState(() => loading = true);
-                              await DatabaseInvoiceService(
-                                uid: userUid,
-                              ).deleteInvoice(_invoices[index].id);
                               setState(() => loading = false);
                             },
                           );
@@ -876,7 +656,8 @@ class _DataInputState extends BaseState<DataInput> {
                     _getCreditCardChip(
                         _creditCards, _paymentInstrumentFixedExpenseController),
                     SizedBox(height: dynamicHeight(0.01)),
-                    _getBankChipInvoice(_banks, _paymentInstrumentFixedExpenseController),
+                    _getBankChipInvoice(
+                        _banks, _paymentInstrumentFixedExpenseController),
                     SizedBox(height: dynamicHeight(0.01)),
                     TextInputCard(
                       TextFormField(
@@ -911,7 +692,8 @@ class _DataInputState extends BaseState<DataInput> {
                                           .createFixedExpense(
                                               userUid,
                                               _expenseTypeController.text,
-                                              _paymentInstrumentFixedExpenseController.text,
+                                              _paymentInstrumentFixedExpenseController
+                                                  .text,
                                               _detailsController.text);
                                   if (result != null) {
                                     setState(() => loading = false);
@@ -934,14 +716,7 @@ class _DataInputState extends BaseState<DataInput> {
                             color: currentTheme.primaryColor,
                             textColor: Colors.white,
                             onPressed: () {
-                              setState(
-                                () {
-                                  _fixedExpenseIdController.text = '';
-                                  _expenseTypeController.text = '';
-                                  _paymentInstrumentFixedExpenseController.text = '';
-                                  _detailsController.text = '';
-                                },
-                              );
+                              _fixedExpenseFormKey.currentState.reset();
                             },
                           ),
                         ),
@@ -963,7 +738,8 @@ class _DataInputState extends BaseState<DataInput> {
                                               userUid,
                                               _fixedExpenseIdController.text,
                                               _expenseTypeController.text,
-                                              _paymentInstrumentFixedExpenseController.text,
+                                              _paymentInstrumentFixedExpenseController
+                                                  .text,
                                               _detailsController.text);
                                   if (result != null) {
                                     setState(() => loading = false);
@@ -1030,6 +806,208 @@ class _DataInputState extends BaseState<DataInput> {
                               await DatabaseFixedExpenseService(
                                 uid: userUid,
                               ).deleteFixedExpense(_fixedExpenses[index].id);
+                              setState(() => loading = false);
+                            },
+                          );
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          );
+  }
+
+  _invoiceTab(_invoices, _creditCards, _banks) {
+    return loading
+        ? Loading()
+        : SingleChildScrollView(
+            child: Form(
+              key: _invoiceFormKey,
+              child: Padding(
+                padding: EdgeInsets.all(dynamicWidth(0.02)),
+                child: Column(
+                  children: <Widget>[
+                    TextInputCard(
+                      TextFormField(
+                        decoration: appConstants.textInputDecoration.copyWith(
+                            labelText:
+                                LocaleKeys.appStrings_invoiceType.locale),
+                        controller: _incoiceTypeController,
+                        validator: (value) {
+                          if (value.isEmpty) {
+                            return LocaleKeys
+                                .appStrings_enterInvoiceType.locale;
+                          }
+                          return null;
+                        },
+                      ),
+                    ),
+                    TextInputCard(
+                      TextFormField(
+                        enabled: false,
+                        decoration: appConstants.textInputDecoration.copyWith(
+                            labelText:
+                                LocaleKeys.appStrings_paymentInstrument.locale),
+                        controller: _paymentInstrumentInvoiceController,
+                        validator: (value) {
+                          if (value.isEmpty) {
+                            return LocaleKeys
+                                .appStrings_enterPaymentInstrument.locale;
+                          }
+                          return null;
+                        },
+                      ),
+                    ),
+                    _getCreditCardChip(
+                        _creditCards, _paymentInstrumentInvoiceController),
+                    SizedBox(height: dynamicHeight(0.01)),
+                    _getBankChipInvoice(
+                        _banks, _paymentInstrumentInvoiceController),
+                    SizedBox(height: dynamicHeight(0.01)),
+                    TextInputCard(
+                      TextFormField(
+                        decoration: appConstants.textInputDecoration.copyWith(
+                            labelText: LocaleKeys.appStrings_owner.locale),
+                        controller: _ownerInvoiceController,
+                        validator: (value) {
+                          if (value.isEmpty) {
+                            return LocaleKeys.appStrings_enterOwner.locale;
+                          }
+                          return null;
+                        },
+                      ),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: <Widget>[
+                        Container(
+                          margin:
+                              const EdgeInsets.only(top: 16.0, bottom: 16.0),
+                          child: RaisedButton(
+                            child: Text(LocaleKeys.appStrings_add.locale),
+                            color: currentTheme.primaryColor,
+                            textColor: Colors.white,
+                            onPressed: () async {
+                              if (_invoiceFormKey.currentState.validate()) {
+                                setState(() => loading = true);
+                                try {
+                                  dynamic result = await DatabaseInvoiceService()
+                                      .createInvoice(
+                                          userUid,
+                                          _incoiceTypeController.text,
+                                          _paymentInstrumentInvoiceController
+                                              .text,
+                                          _ownerInvoiceController.text);
+                                  if (result != null) {
+                                    setState(() => loading = false);
+                                  } else {
+                                    setState(() => error =
+                                        LocaleKeys.appStrings_errorCYI.locale);
+                                    setState(() => loading = false);
+                                  }
+                                } catch (e) {}
+                              }
+                            },
+                          ),
+                        ),
+                        Container(
+                          margin:
+                              const EdgeInsets.only(top: 16.0, bottom: 16.0),
+                          child: RaisedButton(
+                            child:
+                                Text(LocaleKeys.appStrings_clearScreen.locale),
+                            color: currentTheme.primaryColor,
+                            textColor: Colors.white,
+                            onPressed: () {
+                              _invoiceFormKey.currentState.reset();
+                            },
+                          ),
+                        ),
+                        Container(
+                          margin:
+                              const EdgeInsets.only(top: 16.0, bottom: 16.0),
+                          child: RaisedButton(
+                            child: Text(LocaleKeys.appStrings_update.locale),
+                            color: currentTheme.primaryColor,
+                            textColor: Colors.white,
+                            onPressed: () async {
+                              if (_invoiceFormKey.currentState.validate()) {
+                                setState(() => loading = true);
+                                try {
+                                  dynamic result = await DatabaseInvoiceService()
+                                      .editInvoice(
+                                          userUid,
+                                          _invoiceIdController.text,
+                                          _incoiceTypeController.text,
+                                          _paymentInstrumentInvoiceController
+                                              .text,
+                                          _ownerInvoiceController.text);
+                                  if (result != null) {
+                                    setState(() => loading = false);
+                                  } else {
+                                    setState(() => error =
+                                        LocaleKeys.appStrings_errorCYI.locale);
+                                    setState(() => loading = false);
+                                  }
+                                } catch (e) {}
+                              }
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: dynamicHeight(0.02),
+                    ),
+                    Text(
+                      error,
+                      style: TextStyle(color: Colors.red, fontSize: 14.0),
+                    ),
+                    Wrap(
+                      spacing: dynamicWidth(0.02),
+                      runSpacing: dynamicWidth(0.03),
+                      children: List<Widget>.generate(
+                        _invoices.length,
+                        (int index) {
+                          return InputChip(
+                            labelPadding: EdgeInsets.all(dynamicWidth(0.01)),
+                            avatar: CircleAvatar(
+                              backgroundColor: Colors.grey.shade600,
+                              child: Text(_invoices[index]
+                                  .invoiceType[0]
+                                  .toUpperCase()),
+                            ),
+                            label: Text(
+                              _invoices[index].invoiceType +
+                                  ' / ' +
+                                  _invoices[index].paymentInstrument +
+                                  ' / ' +
+                                  _invoices[index].owner,
+                              style: TextStyle(
+                                color: Colors.white,
+                              ),
+                            ),
+                            onPressed: () {
+                              _invoiceIdController.text = _invoices[index].id;
+                              _incoiceTypeController.text =
+                                  _invoices[index].invoiceType;
+                              _paymentInstrumentInvoiceController.text =
+                                  _invoices[index].paymentInstrument;
+                              _ownerInvoiceController.text =
+                                  _invoices[index].owner;
+                            },
+                            backgroundColor:
+                                currentTheme.colorScheme.background,
+                            elevation: 6.0,
+                            shadowColor: Colors.grey[60],
+                            padding: EdgeInsets.all(dynamicWidth(0.01)),
+                            onDeleted: () async {
+                              setState(() => loading = true);
+                              await DatabaseInvoiceService(
+                                uid: userUid,
+                              ).deleteInvoice(_invoices[index].id);
                               setState(() => loading = false);
                             },
                           );
