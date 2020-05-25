@@ -16,6 +16,7 @@ abstract class  LocaleKeys {
   static const appStrings_expenseTypesList_Invoice = 'appStrings.expenseTypesList.Invoice';
   static const appStrings_expenseTypesList_Other = 'appStrings.expenseTypesList.Other';
   static const appStrings_expenseTypesList = 'appStrings.expenseTypesList';
+  static const appStrings_budgetControlApp = 'appStrings.budgetControlApp';
   static const appStrings_dashboard = 'appStrings.dashboard';
   static const appStrings_errorCYI = 'appStrings.errorCYI';
   static const appStrings_welcomeTitle = 'appStrings.welcomeTitle';

@@ -18,6 +18,7 @@
             "Invoice": "Fatura",
             "Other": "Diğer"
         },
+        "budgetControlApp": "Bütçe Kontrolü",
         "dashboard": "Panel",
         "errorCYI": "Bilgilerinizi kontrol edin",
         "welcomeTitle": "Bütçe Kontrolüne Giriş",

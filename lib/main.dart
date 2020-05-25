@@ -1,3 +1,5 @@
+import 'package:budgetControl/core/init/locale_keys.g.dart';
+import 'package:budgetControl/core/init/string_extensions.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -106,7 +108,7 @@ class _MyAppState extends State<MyApp> {
           supportedLocales: context.supportedLocales,
           locale: context.locale,
           debugShowCheckedModeBanner: false,
-          title: 'Budget Control',
+          title: LocaleKeys.appStrings_budgetControlApp.locale,
           theme: settings.getTheme(),
           initialRoute: isAuthenticated ? '/dashboard' : '/welcome',
           routes: {

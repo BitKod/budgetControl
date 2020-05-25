@@ -6,7 +6,8 @@ class AppStrings {
 ///////////////////////////////////////////////////
 
   String errorCYI = 'Check your information';
-
+  String budgetControlApp = "Budget Control";
+ 
   //welcome.dart
   String welcomeTitle = "Welcome to Budget Control";
   String email = 'email';

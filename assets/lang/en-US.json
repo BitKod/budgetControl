@@ -1,5 +1,4 @@
 {
-    
     "appStrings": {
         "dashboardItems": {
             "balance": "balance",
@@ -19,6 +18,7 @@
             "Invoice": "Invoice",
             "Other": "Other"
         },
+        "budgetControlApp":"Budget Control",
         "dashboard":"Dashboard",
         "errorCYI": "Check your information",
         "welcomeTitle": "Welcome to Budget Control",
