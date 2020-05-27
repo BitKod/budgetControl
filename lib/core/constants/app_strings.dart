@@ -1,10 +1,13 @@
 class AppStrings {
+
+    // declaring app strings
+
   static AppStrings _instance = AppStrings._init();
   static AppStrings get instance => _instance;
   AppStrings._init();
 
 ///////////////////////////////////////////////////
-
+///can be used for language inputs
   String errorCYI = 'Check your information';
   String budgetControlApp = "Budget Control";
  
