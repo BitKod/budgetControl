@@ -1,9 +1,9 @@
 import 'package:budgetControl/inApp/models/user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-
 class DatabaseUserService {
-
+  final String uid;
+  DatabaseUserService({this.uid});
   final CollectionReference collection = Firestore.instance.collection('users');
 
   Future registerUser(String uid, String name, String email) async {
@@ -22,14 +22,11 @@ class DatabaseUserService {
   Future getProfile(String uid) async {
     try {
       DocumentSnapshot result =
-          await Firestore.instance
-          .collection('users')
-          .document(uid)
-          .get();
+          await Firestore.instance.collection('users').document(uid).get();
 
-          if(result.exists) {
-            return User.fromFirestore(result);
-          }
+      if (result.exists) {
+        return User.fromFirestore(result);
+      }
     } catch (e) {
       print('Hata oluştu!! : $e');
     }
@@ -39,13 +36,11 @@ class DatabaseUserService {
     try {
       return await collection.document(uid).updateData({
         "name": name,
-        "userImage" : userImage,
+        "userImage": userImage,
         "updatedAt": FieldValue.serverTimestamp(),
       });
     } catch (e) {
       print('Hata oluştu!! : $e');
     }
   }
-
- 
 }

@@ -4,7 +4,6 @@ import 'package:budgetControl/core/view/base/base_state.dart';
 import 'package:budgetControl/core/view/widget/loading/loading.dart';
 import 'package:budgetControl/inApp/models/expense.dart';
 import 'package:budgetControl/inApp/models/income.dart';
-import 'package:budgetControl/inApp/services/auth.dart';
 import 'package:budgetControl/inApp/services/database_expense.dart';
 import 'package:budgetControl/inApp/services/database_income.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -45,6 +44,7 @@ class _BalancesState extends BaseState<Balances> {
   String _expenseType;
   String _expenseInstrument;
 
+  
 
   @override
   Widget build(BuildContext context) {
@@ -282,7 +282,7 @@ class _BalancesState extends BaseState<Balances> {
                                             fontWeight: FontWeight.bold),
                                       ),
                                       trailing: Text(
-                                        _expenses[index].expenseType,
+                                        _expenses[index].expenseType.locale,
                                         style: TextStyle(
                                             color: Colors.white,
                                             fontWeight: FontWeight.bold),

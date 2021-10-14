@@ -16,7 +16,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart';
 import 'package:budgetControl/inApp/models/user.dart';
-import 'package:budgetControl/inApp/services/database.dart';
+import 'package:budgetControl/inApp/services/database_user.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -90,7 +90,7 @@ class _ProfileState extends BaseState<Profile> {
     }
 
     Future getUser() async {
-      var currentUser = await DatabaseService().getProfile(widget.userUid);
+      var currentUser = await DatabaseUserService().getProfile(widget.userUid);
       setState(() {
         user = currentUser;
         _nameController.text = currentUser.name;
@@ -346,7 +346,7 @@ class _ProfileState extends BaseState<Profile> {
                                     loading = true;
                                   });
                                   try {
-                                    await DatabaseService(uid: widget.userUid)
+                                    await DatabaseUserService(uid: widget.userUid)
                                         .editProfile(
                                       widget.userUid,
                                       _nameController.text,

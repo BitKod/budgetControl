@@ -182,7 +182,7 @@ class _SavingsState extends BaseState<Savings> {
                                     topRight: Radius.circular(10),
                                   ),
                                 ),
-                                content: Text("${_savingDate}"),
+                                content: Text("$_savingDate"),
                                 duration: Duration(seconds: 1),
                               ),
                             );

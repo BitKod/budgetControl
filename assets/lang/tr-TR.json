@@ -18,6 +18,19 @@
             "Invoice": "Fatura",
             "Other": "Diğer"
         },
+<<<<<<< Updated upstream
+=======
+        "balance": "denge",
+        "Banks": "Bankalar",
+        "Credit_Cards": "Kredi Kartları",
+        "Invoices": "Faturalar",
+        "Fixed_Expenses": "Sabit Giderler",
+        "Installment": "Taksit",
+        "Fixed_Expense": "Sabit Gider",
+        "Invoice": "Fatura",
+        "Other": "Diğer",
+        "budgetControlApp": "Bütçe Kontrolü",
+>>>>>>> Stashed changes
         "dashboard": "Panel",
         "errorCYI": "Bilgilerinizi kontrol edin",
         "welcomeTitle": "Bütçe Kontrolüne Giriş",

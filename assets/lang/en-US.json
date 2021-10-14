@@ -19,6 +19,19 @@
             "Invoice": "Invoice",
             "Other": "Other"
         },
+<<<<<<< Updated upstream
+=======
+        "balance": "balance",
+        "Banks": "Banks",
+        "Credit_Cards": "Credit Cards",
+        "Invoices": "Invoices",
+        "Fixed_Expenses": "Fixed Expenses",
+        "Installment": "Installment",
+        "Fixed_Expense": "Fixed Expense",
+        "Invoice": "Invoice",
+        "Other": "Other",
+        "budgetControlApp":"Budget Control",
+>>>>>>> Stashed changes
         "dashboard":"Dashboard",
         "errorCYI": "Check your information",
         "welcomeTitle": "Welcome to Budget Control",

@@ -3,6 +3,7 @@ import 'package:budgetControl/core/init/locale_keys.g.dart';
 import 'package:budgetControl/core/init/string_extensions.dart';
 import 'package:budgetControl/core/view/base/base_state.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({Key key}) : super(key: key);
@@ -12,6 +13,46 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends BaseState<Dashboard> {
+  bool _themeValue = false;
+  bool _languageValue = false;
+
+    loadLanguage() async {
+      await SharedPreferences.getInstance().then((prefs) {
+        int preferredLanguage = prefs.getInt('language_preference') ?? 0;
+        if (preferredLanguage == 0) {
+          setState(() {
+            _languageValue = false;
+          });
+        } else {
+          setState(() {
+            _languageValue = true;
+          });
+        }
+      });
+    }
+
+    loadTheme() async {
+      await SharedPreferences.getInstance().then((prefs) {
+        int preferredTheme = prefs.getInt('theme_preference') ?? 0;
+        if (preferredTheme == 0) {
+          setState(() {
+            _themeValue = false;
+          });
+        } else {
+          setState(() {
+            _themeValue = true;
+          });
+        }
+      });
+    }
+
+@override
+  void initState() {
+
+    loadLanguage();
+    loadTheme();
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(

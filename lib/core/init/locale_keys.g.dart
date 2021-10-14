@@ -16,6 +16,19 @@ abstract class  LocaleKeys {
   static const appStrings_expenseTypesList_Invoice = 'appStrings.expenseTypesList.Invoice';
   static const appStrings_expenseTypesList_Other = 'appStrings.expenseTypesList.Other';
   static const appStrings_expenseTypesList = 'appStrings.expenseTypesList';
+<<<<<<< Updated upstream
+=======
+  static const appStrings_balance = 'appStrings.balance';
+  static const appStrings_Banks = 'appStrings.Banks';
+  static const appStrings_Credit_Cards = 'appStrings.Credit_Cards';
+  static const appStrings_Invoices = 'appStrings.Invoices';
+  static const appStrings_Fixed_Expenses = 'appStrings.Fixed_Expenses';
+  static const appStrings_Installment = 'appStrings.Installment';
+  static const appStrings_Fixed_Expense = 'appStrings.Fixed_Expense';
+  static const appStrings_Invoice = 'appStrings.Invoice';
+  static const appStrings_Other = 'appStrings.Other';
+  static const appStrings_budgetControlApp = 'appStrings.budgetControlApp';
+>>>>>>> Stashed changes
   static const appStrings_dashboard = 'appStrings.dashboard';
   static const appStrings_errorCYI = 'appStrings.errorCYI';
   static const appStrings_welcomeTitle = 'appStrings.welcomeTitle';
