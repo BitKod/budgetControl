@@ -8,12 +8,9 @@ class ImagePath {
 
   String lottiePath(String text) => "assets/lottie/$text.json";
 
-<<<<<<< Updated upstream
   String welcomeBackgroundNetwork = 'https://i.picsum.photos/id/1/450/800.jpg?blur=5';
-=======
   //can be downloaded as assets
-  String welcomeBackgroundNetwork = 'https://picsum.photos/seed/450/800?blur=5';
->>>>>>> Stashed changes
+  //String welcomeBackgroundNetwork = 'https://picsum.photos/seed/450/800?blur=5';
 
   String dashboardBackgroundNetwork = 'https://picsum.photos/seed/450/800?blur=5';
 
